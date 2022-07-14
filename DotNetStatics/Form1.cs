@@ -72,8 +72,8 @@ namespace DotNetStatics
                 var md = _random.Next(-_maxDiff, _maxDiff) / 100.0;
                 _xs[i] = i;
                 double y = 0.1 * i;
-                _ys[i] = 6 * y * y * y + 2 * y * y + 7 * y ;
-                _ys[i] *= (1+md);
+                _ys[i] = 6 * y * y * y + 2 * y * y + 7 * y;
+                _ys[i] *= (1 + md);
             }
 
             double[] w = Fit.Polynomial(_xs, _ys, maxPower);
@@ -120,10 +120,10 @@ namespace DotNetStatics
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             _maxDiff = trackBar1.Value;
-            LblMaxDiff.Text = _maxDiff+"%";
+            LblMaxDiff.Text = _maxDiff + "%";
             if (_lastType == 1)
             {
-                BtnLineFitting_Click(this,EventArgs.Empty);
+                BtnLineFitting_Click(this, EventArgs.Empty);
             }
             else if (_lastType == 2)
             {
