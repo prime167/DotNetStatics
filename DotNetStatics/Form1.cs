@@ -128,7 +128,7 @@ namespace DotNetStatics
             _lastType = 2;
         }
 
-        private string BuildPolynomial(int maxPower, IEnumerable<double> co)
+        private static string BuildPolynomial(int maxPower, IEnumerable<double> co)
         {
             var list = co.ToList();
             var sb = new StringBuilder();
