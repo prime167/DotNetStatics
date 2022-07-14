@@ -30,7 +30,7 @@ namespace DotNetStatics
             formsPlot1.Plot.Title("");
             formsPlot1.Refresh();
             trackBar1.Value = 10;
-            trackBar1.Value = 12;
+            trackBar2.Value = 2;
             _maxDiff = trackBar1.Value;
             _maxDegree = trackBar2.Value;
         }
@@ -134,11 +134,11 @@ namespace DotNetStatics
             var sb = new StringBuilder();
             for (int i = 0; i < maxPower; i++)
             {
-                list[i] = Math.Round(list[i], 2);
+                list[i] = Math.Round(list[i], 3);
                 sb.Append($"{list[i]} * x^{maxPower - i} + ");
             }
 
-            var q = Math.Round(list[^1], 2);
+            var q = Math.Round(list[^1], 3);
             sb.Append($"{q}");
             return sb.ToString().Replace("x^1","x").Replace("+ -","- ");
         }
