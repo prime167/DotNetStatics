@@ -4,7 +4,7 @@ using ScottPlot;
 
 namespace DotNetStatics;
 
-public partial class Form1 : Form
+public partial class FormRegression : Form
 {
     private int _count;
     private double[] _xs;
@@ -17,7 +17,7 @@ public partial class Form1 : Form
 
     private Random _random;
 
-    public Form1()
+    public FormRegression()
     {
         InitializeComponent();
     }

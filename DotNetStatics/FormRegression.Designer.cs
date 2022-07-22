@@ -1,6 +1,6 @@
 ﻿namespace DotNetStatics
 {
-    partial class Form1
+    partial class FormRegression
     {
         /// <summary>
         ///  Required designer variable.
