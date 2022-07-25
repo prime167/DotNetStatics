@@ -10,8 +10,8 @@ public partial class FormMovingAverage : Form
     private Random _random;
     private ScatterPlotList<double> plotOrigin; // original data
     private ScatterPlotList<double> plotSma;// ama
-    private ScatterPlotList<double> plotWma;// wma
     private ScatterPlotList<double> plotEma;// ema
+    private ScatterPlotList<double> plotWma;// wma
 
     private const int k = 5;// sample Count;
     private int _nextDataIndex = 0;
@@ -80,10 +80,10 @@ public partial class FormMovingAverage : Form
         formsPlot1.Plot.SetOuterViewLimits(0, 100000, 0, 300);
         formsPlot1.Plot.Legend(true, Alignment.UpperLeft);
         formsPlot1.MouseDoubleClick += FormsPlot1_MouseDoubleClick;
-        plotOrigin = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "data", MarkerShape.filledCircle, LineStyle.Solid);
-        plotSma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Simple moving average", MarkerShape.filledCircle, LineStyle.Solid);
-        plotWma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Weighted moving average", MarkerShape.filledCircle, LineStyle.Solid);
-        plotEma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Exponential moving average", MarkerShape.filledCircle, LineStyle.Solid);
+        plotOrigin = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "data");
+        plotSma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Simple moving average");
+        plotEma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Exponential moving average");
+        //plotWma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Weighted moving average");
     }
 
     private void FormsPlot1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -95,5 +95,33 @@ public partial class FormMovingAverage : Form
     {
         ResetPlot();
         _timer.Change(0, 50);
+    }
+
+    private void cbSma_CheckedChanged(object sender, EventArgs e)
+    {
+        if (cbSma.Checked)
+        {
+            plotSma.IsVisible = true;
+        }
+        else
+        {
+            plotSma.IsVisible = false;
+        }
+
+        formsPlot1.Refresh();
+    }
+
+    private void cbEma_CheckedChanged(object sender, EventArgs e)
+    {
+        if (cbEma.Checked)
+        {
+            plotEma.IsVisible = true;
+        }
+        else
+        {
+            plotEma.IsVisible = false;
+        }
+
+        formsPlot1.Refresh();
     }
 }

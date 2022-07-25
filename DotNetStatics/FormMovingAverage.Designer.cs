@@ -31,6 +31,8 @@
             this.formsPlot1 = new ScottPlot.FormsPlot();
             this.BtnReset = new System.Windows.Forms.Button();
             this.BtnStart = new System.Windows.Forms.Button();
+            this.cbSma = new System.Windows.Forms.CheckBox();
+            this.cbEma = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // formsPlot1
@@ -61,11 +63,39 @@
             this.BtnStart.UseVisualStyleBackColor = true;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
+            // cbSma
+            // 
+            this.cbSma.AutoSize = true;
+            this.cbSma.Checked = true;
+            this.cbSma.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSma.Location = new System.Drawing.Point(63, 25);
+            this.cbSma.Name = "cbSma";
+            this.cbSma.Size = new System.Drawing.Size(54, 21);
+            this.cbSma.TabIndex = 6;
+            this.cbSma.Text = "SMA";
+            this.cbSma.UseVisualStyleBackColor = true;
+            this.cbSma.CheckedChanged += new System.EventHandler(this.cbSma_CheckedChanged);
+            // 
+            // cbEma
+            // 
+            this.cbEma.AutoSize = true;
+            this.cbEma.Checked = true;
+            this.cbEma.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbEma.Location = new System.Drawing.Point(182, 25);
+            this.cbEma.Name = "cbEma";
+            this.cbEma.Size = new System.Drawing.Size(54, 21);
+            this.cbEma.TabIndex = 7;
+            this.cbEma.Text = "EMA";
+            this.cbEma.UseVisualStyleBackColor = true;
+            this.cbEma.CheckedChanged += new System.EventHandler(this.cbEma_CheckedChanged);
+            // 
             // FormMovingAverage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbEma);
+            this.Controls.Add(this.cbSma);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.BtnReset);
             this.Controls.Add(this.formsPlot1);
@@ -73,6 +103,7 @@
             this.Text = "Moving Average";
             this.Load += new System.EventHandler(this.FormMovingAverage_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -81,5 +112,7 @@
         private ScottPlot.FormsPlot formsPlot1;
         private Button BtnReset;
         private Button BtnStart;
+        private CheckBox cbSma;
+        private CheckBox cbEma;
     }
 }
