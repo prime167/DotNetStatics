@@ -4,7 +4,6 @@ using Timer = System.Threading.Timer;
 
 namespace DotNetStatics;
 
-
 public partial class FormMovingAverage : Form
 {
     private Random _random;
@@ -14,8 +13,9 @@ public partial class FormMovingAverage : Form
     private ScatterPlotList<double> plotWma;// wma
 
     private const int k = 5;// sample Count;
-    private int _nextDataIndex = 0;
-    private int _maxCount = 100;
+    private int _nextDataIndex = 1;
+    private readonly int _maxCount = 100;
+    private double sum;
     private SimpleMovingAverage _sma;
     private ExponentialMovingAverageIndicator _ema;
 
@@ -32,36 +32,54 @@ public partial class FormMovingAverage : Form
         _sma = new SimpleMovingAverage(k);
         _ema = new ExponentialMovingAverageIndicator(k);
         _random = Random.Shared;
-        _timer = new Timer(UpdateData, null, 0, 200);
+        _timer = new Timer(UpdateData, null, 0, 100);
     }
 
     private void UpdateData(object state)
     {
-        Invoke(() =>
+        try
         {
-            if (_nextDataIndex < _maxCount)
+            Invoke(() =>
             {
-                var x = 30 * _nextDataIndex;
-                //var y = Math.Round(Math.Sqrt(x), 3) * (_count + 1);
-                var y = _random.Next(1, 5) * 1.0;
-                plotOrigin.Add(x, y);
-                y = _sma.Update(y);
-                plotSma.Add(x, y);
-                _ema.AddDataPoint(y);
-                y = _ema.Average;
-                plotEma.Add(x, y);
-                _nextDataIndex++;
+                if (_nextDataIndex < _maxCount)
+                {
+                    var x = _nextDataIndex;
+                    //var y = Math.Round(Math.Sqrt(x), 3) * (_count + 1);
+                    var y = _random.Next(1, 5) * 1.0;
+                    //var q = 1.0 /(x*x*x*x);
+                    //sum += q;
+                   // var y = sum;
+                    plotOrigin.Add(x, y);
 
-                formsPlot1.Plot.AxisAuto();
-                formsPlot1.Refresh();
-            }
-            else
-            {
-                _timer.Change(Timeout.Infinite, Timeout.Infinite);
-                _nextDataIndex = 0;
-                BtnStart.Enabled = true;
-            }
-        });
+                    if (chkSma.Checked)
+                    {
+                        y = _sma.Update(y);
+                        plotSma.Add(x, y);
+                    }
+
+                    if (chkEma.Checked)
+                    {
+                        _ema.AddDataPoint(y);
+                        y = _ema.Average;
+                        plotEma.Add(x, y);
+                    }
+
+                    _nextDataIndex++;
+
+                    formsPlot1.Plot.AxisAuto();
+                    formsPlot1.Refresh();
+                }
+                else
+                {
+                    _timer.Change(Timeout.Infinite, Timeout.Infinite);
+                    _nextDataIndex = 0;
+                    BtnStart.Enabled = true;
+                }
+            });
+        }
+        catch (Exception e)
+        {
+        }
     }
 
     private void BtnReset_Click(object sender, EventArgs e)
@@ -77,12 +95,14 @@ public partial class FormMovingAverage : Form
 
         formsPlot1.Configuration.DoubleClickBenchmark = false;
         formsPlot1.Plot.SetAxisLimits(0, null, 0, null);
+        formsPlot1.Plot.XAxis.MinimumTickSpacing(1);
         formsPlot1.Plot.SetOuterViewLimits(0, 100000, 0, 300);
         formsPlot1.Plot.Legend(true, Alignment.UpperLeft);
         formsPlot1.MouseDoubleClick += FormsPlot1_MouseDoubleClick;
         plotOrigin = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "data");
         plotSma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Simple moving average");
         plotEma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Exponential moving average");
+
         //plotWma = formsPlot1.Plot.AddScatterList(null, 1, markerSize, "Weighted moving average");
     }
 
@@ -97,9 +117,9 @@ public partial class FormMovingAverage : Form
         _timer.Change(0, 50);
     }
 
-    private void cbSma_CheckedChanged(object sender, EventArgs e)
+    private void chkSma_CheckedChanged(object sender, EventArgs e)
     {
-        if (cbSma.Checked)
+        if (chkSma.Checked)
         {
             plotSma.IsVisible = true;
         }
@@ -111,9 +131,9 @@ public partial class FormMovingAverage : Form
         formsPlot1.Refresh();
     }
 
-    private void cbEma_CheckedChanged(object sender, EventArgs e)
+    private void chkEma_CheckedChanged(object sender, EventArgs e)
     {
-        if (cbEma.Checked)
+        if (chkEma.Checked)
         {
             plotEma.IsVisible = true;
         }

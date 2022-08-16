@@ -31,13 +31,13 @@
             this.formsPlot1 = new ScottPlot.FormsPlot();
             this.BtnReset = new System.Windows.Forms.Button();
             this.BtnStart = new System.Windows.Forms.Button();
-            this.cbSma = new System.Windows.Forms.CheckBox();
-            this.cbEma = new System.Windows.Forms.CheckBox();
+            this.chkSma = new System.Windows.Forms.CheckBox();
+            this.chkEma = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // formsPlot1
             // 
-            this.formsPlot1.Location = new System.Drawing.Point(13, 40);
+            this.formsPlot1.Location = new System.Drawing.Point(33, 52);
             this.formsPlot1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.formsPlot1.Name = "formsPlot1";
             this.formsPlot1.Size = new System.Drawing.Size(735, 373);
@@ -45,7 +45,7 @@
             // 
             // BtnReset
             // 
-            this.BtnReset.Location = new System.Drawing.Point(214, 396);
+            this.BtnReset.Location = new System.Drawing.Point(222, 447);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(113, 31);
             this.BtnReset.TabIndex = 4;
@@ -55,7 +55,7 @@
             // 
             // BtnStart
             // 
-            this.BtnStart.Location = new System.Drawing.Point(63, 396);
+            this.BtnStart.Location = new System.Drawing.Point(75, 447);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.Size = new System.Drawing.Size(113, 31);
             this.BtnStart.TabIndex = 5;
@@ -63,39 +63,35 @@
             this.BtnStart.UseVisualStyleBackColor = true;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // cbSma
+            // chkSma
             // 
-            this.cbSma.AutoSize = true;
-            this.cbSma.Checked = true;
-            this.cbSma.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSma.Location = new System.Drawing.Point(63, 25);
-            this.cbSma.Name = "cbSma";
-            this.cbSma.Size = new System.Drawing.Size(54, 21);
-            this.cbSma.TabIndex = 6;
-            this.cbSma.Text = "SMA";
-            this.cbSma.UseVisualStyleBackColor = true;
-            this.cbSma.CheckedChanged += new System.EventHandler(this.cbSma_CheckedChanged);
+            this.chkSma.AutoSize = true;
+            this.chkSma.Location = new System.Drawing.Point(63, 25);
+            this.chkSma.Name = "chkSma";
+            this.chkSma.Size = new System.Drawing.Size(54, 21);
+            this.chkSma.TabIndex = 6;
+            this.chkSma.Text = "SMA";
+            this.chkSma.UseVisualStyleBackColor = true;
+            this.chkSma.CheckedChanged += new System.EventHandler(this.chkSma_CheckedChanged);
             // 
-            // cbEma
+            // chkEma
             // 
-            this.cbEma.AutoSize = true;
-            this.cbEma.Checked = true;
-            this.cbEma.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbEma.Location = new System.Drawing.Point(182, 25);
-            this.cbEma.Name = "cbEma";
-            this.cbEma.Size = new System.Drawing.Size(54, 21);
-            this.cbEma.TabIndex = 7;
-            this.cbEma.Text = "EMA";
-            this.cbEma.UseVisualStyleBackColor = true;
-            this.cbEma.CheckedChanged += new System.EventHandler(this.cbEma_CheckedChanged);
+            this.chkEma.AutoSize = true;
+            this.chkEma.Location = new System.Drawing.Point(182, 25);
+            this.chkEma.Name = "chkEma";
+            this.chkEma.Size = new System.Drawing.Size(54, 21);
+            this.chkEma.TabIndex = 7;
+            this.chkEma.Text = "EMA";
+            this.chkEma.UseVisualStyleBackColor = true;
+            this.chkEma.CheckedChanged += new System.EventHandler(this.chkEma_CheckedChanged);
             // 
             // FormMovingAverage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cbEma);
-            this.Controls.Add(this.cbSma);
+            this.ClientSize = new System.Drawing.Size(800, 516);
+            this.Controls.Add(this.chkEma);
+            this.Controls.Add(this.chkSma);
             this.Controls.Add(this.BtnStart);
             this.Controls.Add(this.BtnReset);
             this.Controls.Add(this.formsPlot1);
@@ -112,7 +108,7 @@
         private ScottPlot.FormsPlot formsPlot1;
         private Button BtnReset;
         private Button BtnStart;
-        private CheckBox cbSma;
-        private CheckBox cbEma;
+        private CheckBox chkSma;
+        private CheckBox chkEma;
     }
 }
